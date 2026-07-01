@@ -1,0 +1,75 @@
+{
+    "starting_y": 6,
+    "horizontal_scale": 1,
+    "vertical_scale": 1,
+    "height_map": "avila-example:avila",
+    "surface_biomes": {
+        "map": "avila-example:avila",
+        "biomes": [
+            {
+                "biome": "minecraft:plains",
+                "color": "#6D923D"
+            },
+            {
+                "biome": "minecraft:beach",
+                "color": "#C4B058"
+            },
+            {
+                "biome": "minecraft:jungle",
+                "color": "#338C2A"
+            },
+            {
+                "biome": "minecraft:sparse_jungle",
+                "color": "#738533"
+            },
+            {
+                "biome": "minecraft:desert",
+                "color": "#AEA54A"
+            },
+            {
+                "biome": "minecraft:jagged_peaks",
+                "color": "#FFFFFF"
+            },
+            {
+                "biome": "minecraft:meadow",
+                "color": "#7FC458"
+            },
+            {
+                "biome": "minecraft:grove",
+                "color": "#8AAD88"
+            },
+            {
+                "biome": "minecraft:old_growth_spruce_taiga",
+                "color": "#224D20"
+            },
+            {
+                "biome": "minecraft:stony_shore",
+                "color": "#525252"
+            },
+            {
+                "biome": "minecraft:ocean",
+                "color": "#313A8B"
+            },
+            {
+                "biome": "minecraft:warm_ocean",
+                "color": "#474D90"
+            },
+            {
+                "biome": "minecraft:cold_ocean",
+                "color": "#19248A"
+            },
+            {
+                "biome": "minecraft:deep_ocean",
+                "color": "#10175E"
+            },
+            {
+                "biome": "minecraft:stony_peaks",
+                "color": "#939393"
+            },
+            {
+                "biome": "minecraft:taiga",
+                "color": "#338553"
+            }
+        ]
+    }
+}

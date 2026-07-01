@@ -1,0 +1,81 @@
+plugins {
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
+}
+
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+dependencies {
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
+    // which get remapped to the correct annotations on each platform.
+    // Do NOT use other classes from Fabric Loader.
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    modCompileOnly("com.github.glitchfiend:TerraBlender-fabric:$rootProject.minecraft_version-$rootProject.terrablender_version")
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/novoatlas.accesswidener")
+}
+
+def exampleSourceDir = file("$rootDir/common/src/main/resources/resourcepacks")
+
+def buildDatapacks = tasks.register("buildDatapacks") {
+    group = "build"
+}
+def datapackBuildTarget = file("$rootDir/build/datapacks")
+
+def datapackArchives = []
+
+exampleSourceDir.eachDir { dir ->
+    if (dir.isDirectory()) {
+        def taskName = "buildDatapack${dir.name.capitalize().replace("-", "")}"
+
+        def task = tasks.register(taskName, Zip) {
+            group = "build"
+            from(dir)
+            archiveFileName.set("${dir.name}-${rootProject.mod_version}.zip")
+            destinationDirectory.set(datapackBuildTarget)
+        }
+
+        tasks.named("buildDatapacks") {
+            dependsOn(task)
+        }
+
+        datapackArchives << task.flatMap { it.archiveFile }
+    }
+}
+
+tasks.named("build") {
+    dependsOn(buildDatapacks)
+}
+
+
+publishMods {
+    changelog = file("../changelogs/${mod_version}.md").text
+
+    def fabricChangelog = file("./changelogs/fabric/${mod_version}.md")
+    def neoforgeChangelog = file("./changelogs/neoforge/${mod_version}.md")
+
+    if (fabricChangelog.exists()) {
+        changelog += "\n" + fabricChangelog.text
+    }
+
+    if (neoforgeChangelog.exists()) {
+        changelog += "\n" + neoforgeChangelog.text
+    }
+
+    type = STABLE
+
+    additionalFiles.from(datapackArchives)
+
+    github {
+        repository = "TheDeathlyCow/novoatlas"
+        accessToken = providers.environmentVariable("RELEASE_GITHUB_TOKEN")
+        commitish = "1.21.1"
+        tagName = "${mod_version}"
+
+        displayName = "[1.21-1.21.1] NovoAtlas Example Datapacks ${mod_version}"
+    }
+}

@@ -1,0 +1,21 @@
+{
+  "scale": "1:300",
+  "scale_denominator": 300.0,
+  "relative_to_1_200_linear": 0.6666666666666666,
+  "relative_to_1_200_pixels": 0.4444444444444444,
+  "global_width": 109227,
+  "global_height": 61440,
+  "nominal_standard_shard_pixels": 4096.0,
+  "tile_size": 2048,
+  "tiles_x": 54,
+  "tiles_z": 30,
+  "tiles_per_layer": 1620,
+  "partial_last_tile_x": true,
+  "partial_last_tile_z": false,
+  "recommended_dataset_id": "global_1_300_pacific_tiled_v1",
+  "notes": [
+    "Keep the same 432 geographic regions for comparable geographic detail.",
+    "Compute each region edge from global coordinates; do not repeatedly add a rounded shard width.",
+    "Use a scale-specific cache and output directory."
+  ]
+}

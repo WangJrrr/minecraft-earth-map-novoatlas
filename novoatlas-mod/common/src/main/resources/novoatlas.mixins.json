@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "package": "com.thedeathlycow.novoatlas.mixin",
+    "plugin": "com.thedeathlycow.novoatlas.mixin.compat.Plugin",
+    "compatibilityLevel": "JAVA_21",
+    "minVersion": "0.8",
+    "client": [
+    ],
+    "mixins": [
+        "accessor.NoiseChunkAccessor",
+        "accessor.SurfaceRulesContextAccessor",
+        "compat.terrablender.present.LevelUtilsMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

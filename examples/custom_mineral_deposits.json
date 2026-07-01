@@ -1,0 +1,28 @@
+[
+  {
+    "ore": "tin",
+    "name": "Example Tin District",
+    "longitude": 100.0,
+    "latitude": 20.0,
+    "tier": 3,
+    "core_radius_km": 40.0,
+    "outer_radius_km": 100.0,
+    "country": "Example Country",
+    "region": "Western Region",
+    "source": "custom",
+    "source_url": "https://example.com/source"
+  },
+  {
+    "ore": "tin",
+    "name": "Example Major Tin District",
+    "longitude": -65.0,
+    "latitude": -18.0,
+    "tier": 4,
+    "core_radius_km": 55.0,
+    "outer_radius_km": 125.0,
+    "country": "Example Country",
+    "region": "Highland Region",
+    "source": "custom",
+    "source_url": "https://example.com/source-2"
+  }
+]

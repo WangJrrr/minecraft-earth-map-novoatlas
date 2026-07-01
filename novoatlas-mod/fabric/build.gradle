@@ -1,0 +1,107 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+loom {
+    accessWidenerPath = project(":common").loom.accessWidenerPath
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
+}
+
+processResources {
+    inputs.property 'version', project.version
+
+    from(rootProject.file("common/src/main/resources")) {
+        include("novoatlas.accesswidener")
+    }
+
+    from(rootProject.file("common/src/main/resources")) {
+        include("resourcepacks/**")
+    }
+
+    filesMatching('fabric.mod.json') {
+        expand version: project.version
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+}
+
+publishMods {
+    type = STABLE
+    def changelogFile = file("../changelogs/${mod_version}.md")
+    def changelogFabricFile = file("./changelogs/${mod_version}.md")
+
+    changelog = changelogFile.text
+
+    if (changelogFabricFile.exists()) {
+        changelog += "\n" + changelogFabricFile.text
+    }
+
+    file = remapJar.archiveFile
+    displayName = "NovoAtlas Fabric ${mod_version}"
+
+    modLoaders.addAll("fabric", "quilt")
+
+    curseforge {
+        accessToken = providers.environmentVariable("CURSEFORGE_API_KEY")
+        projectId = "1297254"
+        minecraftVersions.addAll("1.21", "1.21.1")
+
+        javaVersions.add(JavaVersion.VERSION_21)
+
+        clientRequired = false
+        serverRequired = true
+
+        requires("fabric-api")
+
+        optional("terrablender-fabric")
+    }
+
+    modrinth {
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        projectId = "yh3a3Yc8"
+        minecraftVersions.addAll("1.21", "1.21.1")
+
+        requires("fabric-api")
+
+        optional("terrablender")
+    }
+}

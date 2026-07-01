@@ -1,0 +1,31 @@
+# IDE and operating system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+
+# Gradle and Java build output
+**/.gradle/
+**/build/
+**/out/
+
+# Local geographic data and generated output
+real_data_cache/
+outputs/
+cache/
+logs/
+*.log
+*.partial
+*.npy
+
+# Datapacks are distributed as GitHub Release assets
+*.zip
+
+
+# Built mod binaries are published as Release assets
+dist/

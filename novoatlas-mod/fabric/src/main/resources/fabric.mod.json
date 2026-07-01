@@ -1,0 +1,37 @@
+{
+    "schemaVersion": 1,
+    "id": "novoatlas",
+    "version": "${version}",
+    "name": "NovoAtlas",
+    "description": "A data-driven image based world generator for Minecraft.",
+    "authors": [
+        "TheDeathlyCow",
+        "itsmiir (Original Atlas mod)"
+    ],
+    "contact": {
+        "homepage": "https://github.com/TheDeathlyCow/novo-atlas/wiki",
+        "sources": "https://github.com/TheDeathlyCow/novo-atlas",
+        "issues": "https://github.com/TheDeathlyCow/novo-atlas/issues"
+    },
+    "license": "LGPL-3.0",
+    "icon": "assets/novoatlas/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.thedeathlycow.novoatlas.fabric.NovoAtlasFabric"
+        ],
+        "client": [
+            "com.thedeathlycow.novoatlas.fabric.client.NovoAtlasClient"
+        ]
+    },
+    "mixins": [
+        "novoatlas.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.13",
+        "minecraft": ">=1.21 <=1.21.1",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "accessWidener": "novoatlas.accesswidener"
+}

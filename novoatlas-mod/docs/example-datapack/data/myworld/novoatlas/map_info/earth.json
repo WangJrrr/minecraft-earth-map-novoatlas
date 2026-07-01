@@ -1,0 +1,47 @@
+{
+    "starting_y": 6,
+    "scaling": {
+        "horizontal_scale": {
+            "interpolation": "novoatlas:bilinear",
+            "value": 1.0
+        },
+        "vertical_scale": 100.0
+    },
+    "height_map": {
+        "tile_size": 1024,
+        "tiles": "myworld:height/{tx}_{tz}.png",
+        "width": 81920,
+        "height": 46080
+    },
+    "fluid_height_map": {
+        "tile_size": 1024,
+        "tiles": "myworld:fluid/{tx}_{tz}.png",
+        "width": 81920,
+        "height": 46080
+    },
+    "surface_biomes": {
+        "map": {
+            "tile_size": 1024,
+            "tiles": "myworld:biome/{tx}_{tz}.png",
+            "width": 81920,
+            "height": 46080
+        },
+        "biomes": [
+            { "biome": "minecraft:ocean",           "color": "#313A8B" },
+            { "biome": "minecraft:deep_ocean",      "color": "#10175E" },
+            { "biome": "minecraft:warm_ocean",      "color": "#474D90" },
+            { "biome": "minecraft:cold_ocean",      "color": "#19248A" },
+            { "biome": "minecraft:plains",          "color": "#6D923D" },
+            { "biome": "minecraft:desert",          "color": "#AEA54A" },
+            { "biome": "minecraft:jungle",          "color": "#338C2A" },
+            { "biome": "minecraft:sparse_jungle",   "color": "#738533" },
+            { "biome": "minecraft:taiga",           "color": "#338553" },
+            { "biome": "minecraft:meadow",          "color": "#7FC458" },
+            { "biome": "minecraft:grove",           "color": "#8AAD88" },
+            { "biome": "minecraft:jagged_peaks",    "color": "#FFFFFF" },
+            { "biome": "minecraft:stony_peaks",     "color": "#939393" },
+            { "biome": "minecraft:stony_shore",     "color": "#525252" },
+            { "biome": "minecraft:beach",           "color": "#C4B058" }
+        ]
+    }
+}
